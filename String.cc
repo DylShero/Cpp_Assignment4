@@ -27,27 +27,28 @@ explicit HPC::String::String(const char *str){
 
     std::strcpy(data, str);
 
-    std::print("Constructing {} String object of size {}", data, len);
+    std::print("Constructing {} String object of size {}\n", data, len);
 }
 
 //Copy Constructor
 HPC::String::String(const String& in){
-
+    std::print("Calling copy constructor\n");
+    String copy = new String(in.data);
 }
 
 //Move constructor
 HPC::String::String(String&& in) noexcept{
-
+    std::print("Calling move contructor\n");
 }
 
 //Copy assign
 HPC::String::String& operator=(const String& rhs){
-
+    std::print("Calling copy assignment operator\n");
 }
 
 //Move assign
 HPC::String::String& operator=(String&& rhs) noexcept{
-
+    std::print("Calling move assignment operator\n");
 }
 
 //Destructor
