@@ -13,6 +13,50 @@ void f1(HPC::String X){
     std::println("In f1 {}", X.c_str());
 }
 
+//Constructor 1 implementation
+HPC::String::String(std::size_t in){
+    std::print("Constructing String object of size {} \n", in);
+}
+
+//Constructor 2 implementation
+explicit HPC::String::String(const char *str){
+    len = std::strlen(str) + 1; //+1 to account for null character
+    capacity = len;
+
+    data = new char[len];
+
+    std::strcpy(data, str);
+
+    std::print("Constructing {} String object of size {}", data, len);
+}
+
+//Copy Constructor
+HPC::String::String(const String& in){
+
+}
+
+//Move constructor
+HPC::String::String(String&& in) noexcept{
+
+}
+
+//Copy assign
+HPC::String::String& operator=(const String& rhs){
+
+}
+
+//Move assign
+HPC::String::String& operator=(String&& rhs) noexcept{
+
+}
+
+//Destructor
+HPC::String::~String() noexcept{
+    delete[] data;
+    std::print("Deconstructor called on String object");
+}
+
+
 int main()
 {
     HPC::String A{10}; 
