@@ -1,0 +1,6 @@
+Answers to written question 3
+
+A)
+The one that gives an error is f1("HELLO"). This is because the it is trying to pass a char array into a function that takes a type of the new
+String class created. When it cant do that it tries to construct a String object with this parameter but it cannot due the explicit keyword on the
+second constructor which takes an input of a const char*.

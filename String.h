@@ -38,8 +38,15 @@ namespace HPC
             ~String() noexcept;
 
             // TODO. Write these inline
-            const char* c_str() noexcept;
-            std::size_t length() const noexcept;
+            const char* c_str() const noexcept{
+                if(this->data == nullptr){ //Check these isnt no data and if so return black char array
+                    return "";
+                }
+                return this->data; 
+            }
+            std::size_t length() const noexcept{
+                return this->len;
+            }
 
             /// TODO This is for Q4
             // String& operator+(const String& rhs);
@@ -55,18 +62,41 @@ namespace HPC
     /// TODO: Write specified member function definitions here
 
     // Q4:
-    // std::ostream& operator<<(std::ostream& os, const String& str);
+    std::ostream& operator<<(std::ostream& os, const String& str){
+        os << str.c_str();
+
+        return os;
+    }
+
+    String operator+(const String& a, const String& b){
+        std::size_t aSize = std::strlen(a.c_str()); //Get size of a and b
+        std::size_t bSize = std::strlen(b.c_str());
+        char* temp = new char[aSize + bSize + 1]; //Plus one to deal with terminating character
+
+        std::strcpy(temp, a.c_str()); //Copy a into temp
+        std::strcat(temp, b.c_str()); //Concatenate b onto temp
+
+        String combined(temp); //Create new combined object
+
+        delete[] temp; //Free memory
+
+        return combined;
+    }
 
     //Constructor 1 implementation
 String::String(std::size_t in){
     len = in;
     capacity = in;
     data = new char[capacity];
+
+    if (capacity > 0) { //To deal with random data showing up on objects of size 0
+        data[0] = '\0'; 
+    }
     std::print("Constructing String object of size {} \n", in);
 }
 
 //Constructor 2 implementation
-explicit String::String(const char *str){
+String::String(const char *str){
     len = std::strlen(str) + 1; //+1 to account for null character
     capacity = len;
 
@@ -82,7 +112,7 @@ String::String(const String& in){
     std::print("Calling copy constructor\n");
     
     this->len = in.len; //This is a pointer to the new object being contructed
-    this->capacity = in.capacity
+    this->capacity = in.capacity;
     this->data = new char[this->len];
     std::memcpy(this->data, in.data, this->len);
     
@@ -93,7 +123,7 @@ String::String(String&& in) noexcept{
     std::print("Calling move contructor\n");
 
     this->data = in.data;
-    this->data = in.len;
+    this->len = in.len;
     this->capacity = in.capacity;
 
     in.data = nullptr;
@@ -106,7 +136,7 @@ String::String(String&& in) noexcept{
 String& String::operator=(const String& rhs){
     std::print("Calling copy assignment operator\n");
     if(this == &rhs){
-        print("Trying to copy itself\n");
+        std::print("Trying to copy itself\n");
         return *this;
     }
 
@@ -148,7 +178,7 @@ String& String::operator=(String&& rhs) noexcept{
 //Destructor
 String::~String() noexcept{
     delete[] data;
-    std::print("Deconstructor called on String object");
+    std::print("Deconstructor called on String object\n");
 }
 
 

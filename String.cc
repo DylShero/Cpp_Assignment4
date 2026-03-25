@@ -26,20 +26,20 @@ int main()
     //            written question. When you have answered that question, 
     //            you can comment them out again.
 
-    /*
+    
        f1(12);
        f1(std::size_t{13});
-       f1("HELLO");   
+       //f1("HELLO");   
        f1(HPC::String{"WORLD"});
-       */
+       
 
     // TODO: Q3  Uncomment these two lines after completing Q2.
-    // std::cout << "\n\n---\n" << A.c_str() << "\n---\n\n";
-    // std::cout << "\n\n---\n" << C.c_str() << "\n---\n\n";
+    std::cout << "\n\n---\n" << A.c_str() << "\n---\n\n";
+    std::cout << "\n\n---\n" << C.c_str() << "\n---\n\n";
 
 
     /// TODO: Q4 Uncomment this after overloading operator<<
-    // std::cout << "cout:\t" << A << std::endl;	
+    std::cout << "cout:\t" << A << std::endl;	
     //  TODO: Q4 Uncomment after overloading operator+
     // std::cout << "A+C: " << A+C << '\n';
     /// TODO: Q4 Uncomment this after specialising formatter
