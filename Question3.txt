@@ -4,3 +4,15 @@ A)
 The one that gives an error is f1("HELLO"). This is because the it is trying to pass a char array into a function that takes a type of the new
 String class created. When it cant do that it tries to construct a String object with this parameter but it cannot due the explicit keyword on the
 second constructor which takes an input of a const char*.
+
+The second input into f1 will call the first string constructor which takes an integer(size_t) input and create a temporary String object to use in the 
+f1 function call. In the fourth function call it again creates a temporary String object but this time uses the second constructor taking a C style string.
+This is how the third function call shouldve been implemented. The reason the function needs to take an already constructed String object is because of the
+explicit keyword which doesn't allow the compiler to do this conversion in the function itself.
+
+B)
+
+The change required is to make the c_str() function a const function by adding const between c_str() const {}. This tells the compiler that the funciton will
+not change any of the inputted values, in this case the String object the function is being called on. This allows you to call this function on const values.
+This would cause a problem when calling D.c_str() in main but because A uses the copy assignment operator it does not copy across the const. From my understanding
+it shouldn't copy it across but maybe I should have made my copy assignment operator copy the const across.

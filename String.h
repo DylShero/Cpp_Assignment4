@@ -188,6 +188,19 @@ String::~String() noexcept{
 
 
 // TODO: Q4 Write formatter for std::print here
+template <class CharT>
+struct std::formatter<HPC::String, CharT>{
+
+    const auto parse(std::basic_format_parse_context<CharT>& ctx){
+        return ctx.begin();
+    }
+
+    template <class FormatContext>
+        auto format(const HPC::String& str, FormatContext& ctx) const {
+            return std::format_to(ctx.out(), "{}", str.c_str());
+        }
+
+}
 
 
 #endif /* end of include guard: MYSTRING_H_XGOYUU6M */
