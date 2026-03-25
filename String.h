@@ -57,6 +57,51 @@ namespace HPC
     // Q4:
     // std::ostream& operator<<(std::ostream& os, const String& str);
 
+    //Constructor 1 implementation
+String::String(std::size_t in){
+    std::print("Constructing String object of size {} \n", in);
+}
+
+//Constructor 2 implementation
+explicit String::String(const char *str){
+    len = std::strlen(str) + 1; //+1 to account for null character
+    capacity = len;
+
+    data = new char[len];
+
+    std::strcpy(data, str);
+
+    std::print("Constructing {} String object of size {}\n", data, len);
+}
+
+//Copy Constructor
+String::String(const String& in){
+    std::print("Calling copy constructor\n");
+    String copy = new String(in.data);
+}
+
+//Move constructor
+String::String(String&& in) noexcept{
+    std::print("Calling move contructor\n");
+}
+
+//Copy assign
+String::String& operator=(const String& rhs){
+    std::print("Calling copy assignment operator\n");
+}
+
+//Move assign
+String::String& operator=(String&& rhs) noexcept{
+    std::print("Calling move assignment operator\n");
+}
+
+//Destructor
+String::~String() noexcept{
+    delete[] data;
+    std::print("Deconstructor called on String object");
+}
+
+
 } // END of HPC Namespace
 
 ////////////////////////////////////////////////////////////////
