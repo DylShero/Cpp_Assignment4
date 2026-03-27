@@ -36,4 +36,11 @@ if the substring goes out of range of the string. It uses std::min to help find 
 It allows you to specify the max number of characters to be copied which allows the function to get the substring for the given length.
 
 Next there is a find function to find an inputted substring in the string. It uses strstr which is a standard library function that basically does exactly what the function
-needs to do. Strstr returns a pointer to the postion the match begins
+needs to do. Strstr returns a pointer to the postion the match begins. There is a clear function to clear the data in the String.
+
+Next are the overriden input and output operators << and >>. The main difference is both are defined as friend functions.
+
+At the end of the class it defines a static const value of -1 which as it is a static class variable it is not tied to any single object but belongs to the class overall.
+This gives a constant -1 which is used when an index cannot be found.
+
+Overall the class is similar to the class I made but with a lot of additional functionality added.
